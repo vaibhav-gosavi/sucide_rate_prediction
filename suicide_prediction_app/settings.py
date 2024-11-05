@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-9p-x!^s9@o(w97%@x4rn3kl2c%lj226a)s#ug7vby5+5rrhf4c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['sucide-rate-prediction.onrender.com']
 
 
 # Application definition
