@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Prediction vs. Global Suicide Rate - Suicide Rate Prediction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-500 to-purple-600 min-h-screen font-['Poppins'] flex flex-col">
+    <nav class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="{% url 'home' %}" class="text-white font-bold text-xl">SRP Platform</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="{% url 'predict_lstm' %}" class="text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">LSTM Model</a>
+                        <a href="{% url 'visualizations' %}" class="text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">Visualizations</a>
+                        <a href="{% url 'compare_predictions' %}" class="text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">Compare Models</a>
+                        <a href="{% url 'download_report' %}" class="text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">Download Report</a>
+                        <a href="{% url 'real_time_prediction' %}" class="text-white bg-white bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">Real-Time Prediction</a>
+                        <a href="https://colab.research.google.com/drive/1NoCVqF6Vs-CJK1zMqiU0aN3tvSzO2rzl?usp=sharing" target="_blank" class="text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex-grow flex justify-center items-center p-4">
+        <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-2xl shadow-2xl p-8 border border-white border-opacity-20 w-full max-w-3xl">
+            <h1 class="text-3xl font-bold mb-6 text-center text-white">Real-Time Prediction vs. Global Suicide Rate</h1>
+            
+            <div class="space-y-6">
+                <div class="bg-white bg-opacity-20 rounded-xl p-6">
+                    <h2 class="text-2xl font-semibold mb-2 text-white">Global Average Suicide Rate</h2>
+                    <p class="text-white">The global average suicide rate is approximately <strong class="text-yellow-300">9.0</strong> per 100,000 people.</p>
+                </div>
+                
+                <div class="bg-white bg-opacity-20 rounded-xl p-6">
+                    <h2 class="text-2xl font-semibold mb-2 text-white">Our Model Prediction</h2>
+                    <p class="text-white">Based on certain socioeconomic indicators, our model predicts a suicide rate of around <strong class="text-yellow-300">18.63</strong> per 100,000 people.</p>
+                </div>
+                
+                <div class="bg-white bg-opacity-20 rounded-xl p-6">
+                    <h2 class="text-2xl font-semibold mb-2 text-white">Explanation</h2>
+                    <p class="text-white mb-4">Our model may predict higher rates compared to the global average due to factors such as:</p>
+                    <ul class="list-disc list-inside text-white space-y-2">
+                        <li><strong class="text-yellow-300">Poverty Rate:</strong> High poverty rates contribute to increased socioeconomic stress, which can impact mental health and lead to a higher suicide risk.</li>
+                        <li><strong class="text-yellow-300">Working Poverty Rate:</strong> Individuals in the working population who still live in poverty often face financial insecurity, which can affect their mental well-being.</li>
+                    </ul>
+                    <p class="text-white mt-4">These indicators, when elevated, may lead our model to predict a higher suicide rate, as research suggests a correlation between financial strain and mental health challenges.</p>
+                </div>
+                
+                <div class="bg-white bg-opacity-20 rounded-xl p-6">
+                    <h2 class="text-2xl font-semibold mb-2 text-white">Example Scenario</h2>
+                    <p class="text-white">For example, in a region with a <strong class="text-yellow-300">poverty rate of 20%</strong> and a <strong class="text-yellow-300">working poverty rate of 15%</strong>, our model might predict a suicide rate of approximately <strong class="text-yellow-300">18.63</strong> per 100,000 people. This prediction is slightly higher than the global average due to the model's sensitivity to these specific socioeconomic factors.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg py-4 mt-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-white text-opacity-60 text-sm">
+                © 2023 Suicide Rate Prediction Platform. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        feather.replace()
+    </script>
+</body>
+</html>

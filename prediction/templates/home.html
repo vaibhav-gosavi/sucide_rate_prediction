@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Suicide Rate Prediction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-500 to-purple-600 min-h-screen flex flex-col font-['Poppins']">
+    <nav class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="{% url 'home' %}" class="text-white font-bold text-xl">SRP Platform</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="{% url 'predict_lstm' %}" class="text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">LSTM Model</a>
+                        <a href="{% url 'visualizations' %}" class="text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">Visualizations</a>
+                        <a href="{% url 'compare_predictions' %}" class="text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">Compare Models</a>
+                        <a href="{% url 'download_report' %}" class="text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">Download Report</a>
+                        <a href="{% url 'real_time_prediction' %}" class="text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">Real-Time Prediction</a>
+                        <a href="https://colab.research.google.com/drive/1NoCVqF6Vs-CJK1zMqiU0aN3tvSzO2rzl?usp=sharing" target="_blank" class="text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex-grow flex items-center justify-center p-4">
+        <div class="max-w-4xl w-full bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-2xl shadow-2xl p-8 border border-white border-opacity-20">
+            <h1 class="text-4xl font-bold text-center text-white mb-8 tracking-wide">Suicide Rate Prediction Platform</h1>
+            <p class="text-center text-white text-opacity-80 mb-8">Empowering communities with data-driven insights for suicide prevention</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <a href="{% url 'predict_lstm' %}" class="group bg-white bg-opacity-20 hover:bg-opacity-30 rounded-xl p-6 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-xl font-semibold text-white">LSTM Model</h2>
+                        <i data-feather="trending-up" class="text-white w-6 h-6"></i>
+                    </div>
+                    <p class="text-white text-opacity-70 group-hover:text-opacity-100 transition-opacity duration-300">Leverage our Long Short-Term Memory model for time-series analysis</p>
+                </a>
+                <a href="{% url 'visualizations' %}" class="group bg-white bg-opacity-20 hover:bg-opacity-30 rounded-xl p-6 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-xl font-semibold text-white">Visualizations</h2>
+                        <i data-feather="pie-chart" class="text-white w-6 h-6"></i>
+                    </div>
+                    <p class="text-white text-opacity-70 group-hover:text-opacity-100 transition-opacity duration-300">Explore interactive data visualizations and insights</p>
+                </a>
+                <a href="{% url 'compare_predictions' %}" class="group bg-white bg-opacity-20 hover:bg-opacity-30 rounded-xl p-6 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-xl font-semibold text-white">Compare Models</h2>
+                        <i data-feather="git-merge" class="text-white w-6 h-6"></i>
+                    </div>
+                    <p class="text-white text-opacity-70 group-hover:text-opacity-100 transition-opacity duration-300">Compare predictions across different models</p>
+                </a>
+                <a href="{% url 'download_report' %}" class="group bg-white bg-opacity-20 hover:bg-opacity-30 rounded-xl p-6 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-xl font-semibold text-white">Download Report</h2>
+                        <i data-feather="download-cloud" class="text-white w-6 h-6"></i>
+                    </div>
+                    <p class="text-white text-opacity-70 group-hover:text-opacity-100 transition-opacity duration-300">Get comprehensive prediction reports for your analysis</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-white text-opacity-60 text-sm">
+                © 2023 Suicide Rate Prediction Platform. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        feather.replace()
+    </script>
+</body>
+</html>

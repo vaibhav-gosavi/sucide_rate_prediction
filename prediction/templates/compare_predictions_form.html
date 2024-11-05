@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Predictions - Suicide Rate Prediction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-500 to-purple-600 min-h-screen font-['Poppins'] flex flex-col">
+    <nav class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="{% url 'home' %}" class="text-white font-bold text-xl">SRP Platform</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="{% url 'predict_lstm' %}" class="text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">LSTM Model</a>
+                        <a href="{% url 'visualizations' %}" class="text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">Visualizations</a>
+                        <a href="{% url 'compare_predictions' %}" class="text-white bg-white bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">Compare Models</a>
+                        <a href="{% url 'download_report' %}" class="text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">Download Report</a>
+                        <a href="{% url 'real_time_prediction' %}" class="text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">Real-Time Prediction</a>
+                        <a href="https://colab.research.google.com/drive/1NoCVqF6Vs-CJK1zMqiU0aN3tvSzO2rzl?usp=sharing" target="_blank" class="text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex-grow flex justify-center items-center p-4">
+        <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-2xl shadow-2xl p-8 border border-white border-opacity-20 w-full max-w-md">
+            <h1 class="text-3xl font-bold mb-6 text-center text-white">Enter Data for Comparison</h1>
+            <form method="post" action="{% url 'compare_predictions' %}" class="space-y-6">
+                {% csrf_token %}
+                <div>
+                    <label for="poverty_rate" class="block text-sm font-medium text-white">Poverty Rate:</label>
+                    <input type="number" step="0.01" name="poverty_rate" id="poverty_rate" class="mt-1 block w-full bg-white bg-opacity-20 border border-transparent rounded-md shadow-sm py-2 px-3 text-white placeholder-white placeholder-opacity-50 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent" required>
+                </div>
+                <div>
+                    <label for="working_poverty_rate" class="block text-sm font-medium text-white">Working Poverty Rate:</label>
+                    <input type="number" step="0.01" name="working_poverty_rate" id="working_poverty_rate" class="mt-1 block w-full bg-white bg-opacity-20 border border-transparent rounded-md shadow-sm py-2 px-3 text-white placeholder-white placeholder-opacity-50 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent" required>
+                </div>
+                <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                    Compare Predictions
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-white text-opacity-60 text-sm">
+                © 2023 Suicide Rate Prediction Platform. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        feather.replace()
+    </script>
+</body>
+</html>

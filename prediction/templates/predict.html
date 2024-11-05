@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suicide Rate Prediction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h1 class="text-2xl font-bold mb-6">Predict Suicide Rate</h1>
+        <form id="prediction-form" method="post" class="space-y-4">
+            {% csrf_token %}
+            <div>
+                <label class="block text-sm font-bold">Poverty Rate</label>
+                <input type="number" step="0.01" id="poverty_rate" class="w-full border rounded p-2" required>
+            </div>
+            <div>
+                <label class="block text-sm font-bold">Working Poverty Rate</label>
+                <input type="number" step="0.01" id="working_poverty_rate" class="w-full border rounded p-2" required>
+            </div>
+            <div>
+                <label class="block text-sm font-bold">Model Type</label>
+                <select id="model_type" class="w-full border rounded p-2">
+                    <option value="cnn">CNN Model</option>
+                    <option value="dense">Fully Connected Model</option>
+                </select>
+            </div>
+            <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded">Predict</button>
+        </form>
+        <p id="prediction-result" class="mt-4"></p>
+    </div>
+
+    <script>
+        // Function to get CSRF token from the cookie
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        // Get the CSRF token from the cookie
+        const csrftoken = getCookie('csrftoken');
+
+        // Handle form submission
+        document.getElementById('prediction-form').addEventListener('submit', async function(e) {
+            e.preventDefault();  // Prevent the default form submission
+
+            // Get the form values
+            const poverty_rate = document.getElementById('poverty_rate').value;
+            const working_poverty_rate = document.getElementById('working_poverty_rate').value;
+            const model_type = document.getElementById('model_type').value;
+
+            // Make the POST request to the Django API
+            const response = await fetch('/prediction/predict/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken  // Include CSRF token in the headers
+                },
+                body: JSON.stringify({
+                    poverty_rate: parseFloat(poverty_rate),
+                    working_poverty_rate: parseFloat(working_poverty_rate),
+                    model_type: model_type,
+                }),
+            });
+
+            // Handle the response
+            const result = await response.json();
+            document.getElementById('prediction-result').textContent = `Predicted Suicide Rate: ${result.predicted_suicide_rate.toFixed(2)}`;
+        });
+    </script>
+</body>
+</html>

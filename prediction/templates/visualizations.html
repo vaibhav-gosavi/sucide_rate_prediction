@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Visualizations - Suicide Rate Prediction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-500 to-purple-600 min-h-screen font-['Poppins']">
+    <nav class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="{% url 'home' %}" class="text-white font-bold text-xl">SRP Platform</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="{% url 'predict_lstm' %}" class="text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">LSTM Model</a>
+                        <a href="{% url 'visualizations' %}" class="text-white bg-white bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">Visualizations</a>
+                        <a href="{% url 'compare_predictions' %}" class="text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">Compare Models</a>
+                        <a href="{% url 'download_report' %}" class="text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">Download Report</a>
+                        <a href="{% url 'real_time_prediction' %}" class="text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">Real-Time Prediction</a>
+                        <a href="https://colab.research.google.com/drive/1NoCVqF6Vs-CJK1zMqiU0aN3tvSzO2rzl?usp=sharing" target="_blank" class="text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium">Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center text-white mb-8 tracking-wide">Interactive Data Visualizations</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-2xl shadow-2xl p-6 border border-white border-opacity-20">
+                <h2 class="text-2xl font-semibold text-white mb-4">Poverty Rate vs. Suicide Rate by Country</h2>
+                <div class="aspect-w-16 aspect-h-9">
+                    {{ scatter_html | safe }}
+                </div>
+            </div>
+
+            <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-2xl shadow-2xl p-6 border border-white border-opacity-20">
+                <h2 class="text-2xl font-semibold text-white mb-4">Suicide Rate per 100K by Country</h2>
+                <div class="aspect-w-16 aspect-h-9">
+                    {{ map_html | safe }}
+                </div>
+            </div>
+
+            <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-2xl shadow-2xl p-6 border border-white border-opacity-20">
+                <h2 class="text-2xl font-semibold text-white mb-4">Trend of Suicide Rate Over Time by Country</h2>
+                <div class="aspect-w-16 aspect-h-9">
+                    {{ trend_html | safe }}
+                </div>
+            </div>
+
+            <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-2xl shadow-2xl p-6 border border-white border-opacity-20">
+                <h2 class="text-2xl font-semibold text-white mb-4">Suicide Rate Distribution by Age Group</h2>
+                <div class="aspect-w-16 aspect-h-9">
+                    {{ box_html | safe }}
+                </div>
+            </div>
+
+            <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-2xl shadow-2xl p-6 border border-white border-opacity-20">
+                <h2 class="text-2xl font-semibold text-white mb-4">Distribution of Suicide Rate (Per 100K)</h2>
+                <div class="aspect-w-16 aspect-h-9">
+                    {{ hist_html | safe }}
+                </div>
+            </div>
+
+            <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-2xl shadow-2xl p-6 border border-white border-opacity-20">
+                <h2 class="text-2xl font-semibold text-white mb-4">Poverty Rate vs. Working Poverty Rate Over Time</h2>
+                <div class="aspect-w-16 aspect-h-9">
+                    {{ comparison_html | safe }}
+                </div>
+            </div>
+
+            <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-2xl shadow-2xl p-6 border border-white border-opacity-20 col-span-full">
+                <h2 class="text-2xl font-semibold text-white mb-4">Heatmap of Suicide Rate by Country and Year</h2>
+                <div class="aspect-w-21 aspect-h-9">
+                    {{ heatmap_html | safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg py-4 mt-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-white text-opacity-60 text-sm">
+                © 2023 Suicide Rate Prediction Platform. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        feather.replace()
+    </script>
+</body>
+</html>
